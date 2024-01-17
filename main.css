@@ -1,0 +1,39 @@
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.gameBoard {
+    display: grid;
+    grid-template: 150px 150px 150px / 150px 150px 150px;
+    justify-content: center;
+}
+
+.gameSquare {
+    border: 1px solid black;
+}
+
+.button {
+    margin: auto;
+    justify-self: center;
+}
+
+.playerX {
+    color: green;
+}
+
+.playerO {
+    color:blueviolet;
+}
+
+.gameSquare:hover {
+    background-color: aquamarine;
+}
