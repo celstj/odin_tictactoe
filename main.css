@@ -11,6 +11,11 @@ header {
     margin: 20px;
 }
 
+.player-now {
+    text-align: center;
+    padding: 10px;
+}
+
 .gameBoard {
     display: grid;
     grid-template: 150px 150px 150px / 150px 150px 150px;
@@ -19,21 +24,66 @@ header {
 
 .gameSquare {
     border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.result-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128,128,128,0.4);
+    margin: 0 auto;
+}
+
+.result-box {
+    z-index: 99;
+    position: absolute;
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
+    color: green;
+    background-color: rgb(196, 180, 231);
+    text-align: center;
+    top: 30%;
+    /* line-height: 80px; */
+    font-size: 40px;
+}
+
+.okay {
+    text-align: center;
+    position: relative;
+
 }
 
 .button {
     margin: auto;
+    display: flex;
     justify-self: center;
+    text-align: center;
 }
 
 .playerX {
     color: green;
+    font-size: 150px;
 }
 
 .playerO {
     color:blueviolet;
+    font-size: 150px;
 }
 
 .gameSquare:hover {
     background-color: aquamarine;
+}
+
+.reset {
+    position: absolute;
+    display: block;
+    left: 48.5%;
+    margin: 50px auto;
 }

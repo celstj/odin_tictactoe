@@ -1,34 +1,52 @@
-
 let currentPlayer = 'X';
 const board = document.querySelector('.gameBoard');
 const gameArray = ['', '', '', '', '', '', '', '', ''];
 const resetButton = document.querySelector('.reset');
 const gameSquare = document.querySelector('.gameSquare');
 const gridCells = document.querySelectorAll('.gameSquare');
-
+const resultDiv = document.querySelector('.result-modal');
+const boxOkay = document.querySelector('.okay');
+const resultBox = document.querySelector('.result-box');
+const resultP = document.querySelector('.result-box p');
+let resultMsg = "";
 
 const gameBoard = (() => {
     gridCells.forEach((cell) => {
         cell.addEventListener('click', () => 
             checkGridClick(cell.dataset.index));
-            // console.log('dataset index:'+cell.dataset.index);
     })
 
     function checkGridClick(index) {
+        const playerNow = document.querySelector('.player-now p');
         if (gameArray[index] === '' && !checkWinner()) {
             gameArray[index] = currentPlayer;
             renderBoard();
             if (checkWinner()) {
-                alert (`PLayer ${currentPlayer} wins!`);
+                resultMsg = `Player ${currentPlayer} wins!`;
+                resultDiv.style.display = "flex";
+                resultP.append(resultMsg);
                 reset();
             } else if (gameArray.every(cell => cell != '')) {
-                alert('It\'s a draw!');
+                resultMsg = 'It\'s a draw!';
+                resultDiv.style.display = "flex";
+                resultP.append(resultMsg);
                 reset();
             } else {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                playerNow.textContent = `Now Playing as: Player ${currentPlayer}`;
             }
         }
     }
+
+    boxOkay.addEventListener('click', () => {
+        if(resultDiv.style.display = "block") {
+            resultDiv.style.display = "none";
+        }
+    });
+
+    boxOkay.addEventListener('click', () => {
+        resultP.textContent = "";
+    });
 
     function renderBoard() {
         gridCells.forEach((cell, index) => {
@@ -39,9 +57,9 @@ const gameBoard = (() => {
             } else if (gameArray[index] === 'O'){
                 cell.classList.add('playerO');
             }
-            // console.log('whatthis index:'+gameArray[index]);
         });
     }
+
     const checkWinner = () => {
         const winningMoves = 
             [
@@ -66,10 +84,10 @@ const gameBoard = (() => {
         return false;
     }
 
-
     function reset() {
         for (let i = 0; i < 9; i++){
             gameArray[i] = "";
+            currentPlayer = 'X';
             renderBoard();
         }
     }
